@@ -2,9 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { RootLayout } from "./layouts";
-import { RootPage } from "./pages";
-import { ThemeProvider } from "./providers";
+import { RootLayout } from "./components/layouts";
+import { RootPage } from "./components/pages";
+import { ThemeProvider } from "./components/providers";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,7 +13,10 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route element={<RootLayout />}>
             <Route index element={<RootPage />} />
+            <Route path="foo" element={<>root foo</>} />
           </Route>
+
+          <Route path="*" element={<>not found</>} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
