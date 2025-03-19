@@ -11,9 +11,9 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider defaultTheme="light" storageKey="theme">
       <BrowserRouter>
         <Routes>
-          <Route element={<RootLayout />}>
+          <Route path="manu" element={<RootLayout />}>
             <Route index element={<RootPage />} />
-            <Route path="foo" element={<>root foo</>} />
+            <Route path="*" element={<>root *</>} />
           </Route>
 
           <Route path="*" element={<>not found</>} />
