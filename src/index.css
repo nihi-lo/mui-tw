@@ -1,3 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 3.9%);
+  --divider: rgba(17, 17, 17, 0.15);
+  --content1: #ffffff;
+}
+
+.dark {
+  --background: hsl(0, 0%, 4%);
+  --foreground: hsl(0 0% 98%);
+  --divider: rgba(255, 255, 255, 0.15);
+  --content1: #18181b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-divider: var(--divider);
+  --color-content1: var(--content1);
+}
+
+@layer app {
+  body {
+    @apply !bg-background overflow-y-scroll;
+  }
+}
