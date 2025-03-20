@@ -3,14 +3,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: hsl(0 0% 100%);
+  --background: var(--color-white);
   --foreground: hsl(0 0% 3.9%);
   --divider: rgba(17, 17, 17, 0.15);
   --content1: #ffffff;
 }
 
 .dark {
-  --background: hsl(0, 0%, 4%);
+  --background: var(--color-black);
   --foreground: hsl(0 0% 98%);
   --divider: rgba(255, 255, 255, 0.15);
   --content1: #18181b;
