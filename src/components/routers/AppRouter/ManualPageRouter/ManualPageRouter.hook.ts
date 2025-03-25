@@ -12,11 +12,11 @@ type State = {
 type Action = undefined;
 
 const useManualPageRouter = (): { state: State; action: Action } => {
-  const { projectName, "*": splat } = useParams();
+  const { productName, "*": splat } = useParams();
   const [searchParams] = useSearchParams();
 
   const transitionDestination = useMemo<TransitionDestination | undefined | null>(() => {
-    if (projectName === undefined) {
+    if (productName === undefined) {
       return null;
     }
 
@@ -25,7 +25,7 @@ const useManualPageRouter = (): { state: State; action: Action } => {
     }
 
     return "ViewPage";
-  }, [projectName, searchParams]);
+  }, [productName, searchParams]);
 
   const error = useMemo<Error | null>(
     () => (transitionDestination === null ? new Error("") : null),

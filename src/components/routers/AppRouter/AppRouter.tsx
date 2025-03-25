@@ -10,7 +10,7 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<RootPage />} />
-          <Route path=":projectName">
+          <Route path=":productName">
             <Route index element={<Navigate replace to="/" />} />
             <Route path="manuals">
               <Route index element={<Navigate replace to="./home" />} />
