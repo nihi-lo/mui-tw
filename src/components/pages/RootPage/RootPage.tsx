@@ -1,6 +1,6 @@
 const RootPage: React.FC = () => {
   return (
-    <div className="bg-content1 text-foreground rounded-md px-8 py-4 shadow-md">
+    <div className="bg-content1 text-foreground rounded-lg px-8 py-4 shadow-md">
       <div className="flex gap-2 pb-4">
         <div className="size-6 rounded-full bg-amber-300"></div>
         最終更新日 2025/3/18 2:29

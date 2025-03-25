@@ -11,11 +11,11 @@ const RootLayout: React.FC = () => {
         <BrandLogo />
         <ModeToggle />
       </header>
-      <div className="container mx-auto flex gap-4 px-4 py-8">
+      <div className="container mx-auto flex gap-8 px-4 py-8">
         <div className="grow">
           <Outlet />
         </div>
-        <div className="h-fit min-w-3xs rounded-md p-2 shadow-md">
+        <div className="h-fit min-w-3xs rounded-lg p-2 shadow-md">
           <SimpleTreeView>
             <TreeItem2
               itemId="abc"
