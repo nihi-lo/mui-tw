@@ -25,8 +25,8 @@ const RootLayout: React.FC = () => {
         to: "/foo/manuals/abc",
         label: "abc",
         subItems: [
-          { id: "abc/foo", to: "/foo/manuals/abc/foo", label: "abc/foo" },
-          { id: "abc/bar", to: "/foo/manuals/abc/bar", label: "abc/bar" },
+          { id: "abc/foo", to: "/foo/manuals/abc/foo", label: "foo" },
+          { id: "abc/bar", to: "/foo/manuals/abc/bar", label: "bar" },
         ],
       },
       {
@@ -37,13 +37,13 @@ const RootLayout: React.FC = () => {
           {
             id: "def/foo",
             to: "/foo/manuals/def/foo",
-            label: "def/foo",
+            label: "foo",
             subItems: [
-              { id: "def/foo/foo", to: "/foo/manuals/def/foo/foo", label: "def/foo/foo" },
-              { id: "def/foo/bar", to: "/foo/manuals/def/foo/bar", label: "def/foo/bar" },
+              { id: "def/foo/foo", to: "/foo/manuals/def/foo/foo", label: "foo" },
+              { id: "def/foo/bar", to: "/foo/manuals/def/foo/bar", label: "bar" },
             ],
           },
-          { id: "def/bar", to: "/foo/manuals/def/bar", label: "def/bar" },
+          { id: "def/bar", to: "/foo/manuals/def/bar", label: "bar" },
         ],
       },
     ];
