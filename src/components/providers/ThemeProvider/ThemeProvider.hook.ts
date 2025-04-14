@@ -1,8 +1,7 @@
-import { type Theme as MUITheme } from "@mui/material";
-import { useState, useEffect } from "react";
+import { createTheme, type Theme as MUITheme } from "@mui/material";
+import { useState, useEffect, useMemo } from "react";
 
 import { type Theme, type ThemeState } from "./ThemeProvider.context";
-import { muiTheme } from "./ThemeProvider.type";
 
 type State = {
   theme: ThemeState;
@@ -25,8 +24,23 @@ const useThemeProvider = ({
   state: State;
   action: Action;
 } => {
+  const muiTheme = createTheme({
+    colorSchemes: { dark: true, light: true },
+  });
+
   const [currentTheme, setCurrentTheme] = useState<Theme>(
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
+  );
+
+  const theme = useMemo<ThemeState>(
+    () => ({
+      currentTheme: currentTheme,
+      setTheme: (theme: Theme) => {
+        localStorage.setItem(storageKey, theme);
+        setCurrentTheme(theme);
+      },
+    }),
+    [currentTheme, storageKey],
   );
 
   useEffect(() => {
@@ -44,14 +58,6 @@ const useThemeProvider = ({
 
     root.classList.add(currentTheme);
   }, [currentTheme]);
-
-  const theme: ThemeState = {
-    currentTheme: currentTheme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setCurrentTheme(theme);
-    },
-  };
 
   return {
     state: {
