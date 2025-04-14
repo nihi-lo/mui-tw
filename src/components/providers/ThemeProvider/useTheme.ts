@@ -1,7 +1,14 @@
 import { useContext } from "react";
 
-import { type ThemeState, ThemeStateContext } from "./ThemeProvider.context";
+import {
+  type ThemeState,
+  ThemeStateContext,
+  type ThemeDispatch,
+  ThemeDispatchContext,
+} from "./ThemeProvider.context";
 
 const useThemeState = (): ThemeState => useContext(ThemeStateContext);
 
-export { useThemeState };
+const useThemeDispatch = (): ThemeDispatch => useContext(ThemeDispatchContext);
+
+export { useThemeState, useThemeDispatch };

@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 
-import { type Theme, ThemeStateContext } from "./ThemeProvider.context";
+import { type Theme, ThemeDispatchContext, ThemeStateContext } from "./ThemeProvider.context";
 import { useThemeProvider } from "./ThemeProvider.hook";
 
 type ThemeProviderProps = {
@@ -11,23 +11,25 @@ type ThemeProviderProps = {
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => {
   const {
-    state: { theme, defaultTheme, storageKey, muiTheme },
+    state: { themeState, themeDispatch, defaultTheme, storageKey, muiTheme },
   } = useThemeProvider({
     defaultTheme: props.defaultTheme,
     storageKey: props.storageKey,
   });
 
   return (
-    <ThemeStateContext.Provider value={theme}>
-      <MUIThemeProvider
-        noSsr
-        defaultMode={defaultTheme}
-        modeStorageKey={storageKey}
-        theme={muiTheme}
-      >
-        <CssBaseline />
-        {children}
-      </MUIThemeProvider>
+    <ThemeStateContext.Provider value={themeState}>
+      <ThemeDispatchContext.Provider value={themeDispatch}>
+        <MUIThemeProvider
+          noSsr
+          defaultMode={defaultTheme}
+          modeStorageKey={storageKey}
+          theme={muiTheme}
+        >
+          <CssBaseline />
+          {children}
+        </MUIThemeProvider>
+      </ThemeDispatchContext.Provider>
     </ThemeStateContext.Provider>
   );
 };

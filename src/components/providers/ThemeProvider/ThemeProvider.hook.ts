@@ -1,10 +1,11 @@
 import { createTheme, type Theme as MUITheme } from "@mui/material";
 import { useState, useEffect, useMemo } from "react";
 
-import { type Theme, type ThemeState } from "./ThemeProvider.context";
+import { type Theme, type ThemeDispatch, type ThemeState } from "./ThemeProvider.context";
 
 type State = {
-  theme: ThemeState;
+  themeState: ThemeState;
+  themeDispatch: ThemeDispatch;
   defaultTheme: Theme;
   storageKey: string;
   muiTheme: MUITheme;
@@ -32,7 +33,7 @@ const useThemeProvider = ({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   );
 
-  const theme = useMemo<ThemeState>(
+  const theme = useMemo<ThemeState & ThemeDispatch>(
     () => ({
       currentTheme: currentTheme,
       setTheme: (theme: Theme) => {
@@ -61,7 +62,8 @@ const useThemeProvider = ({
 
   return {
     state: {
-      theme,
+      themeState: theme,
+      themeDispatch: theme,
       defaultTheme,
       storageKey,
       muiTheme,
