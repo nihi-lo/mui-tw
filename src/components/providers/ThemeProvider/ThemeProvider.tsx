@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 
-import { type Theme, ThemeContext } from "./ThemeProvider.context";
+import { type Theme, ThemeStateContext } from "./ThemeProvider.context";
 import { useThemeProvider } from "./ThemeProvider.hook";
 
 type ThemeProviderProps = {
@@ -18,7 +18,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => 
   });
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeStateContext.Provider value={theme}>
       <MUIThemeProvider
         noSsr
         defaultMode={defaultTheme}
@@ -28,8 +28,8 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => 
         <CssBaseline />
         {children}
       </MUIThemeProvider>
-    </ThemeContext.Provider>
+    </ThemeStateContext.Provider>
   );
 };
 
-export { ThemeContext, ThemeProvider };
+export { ThemeProvider };

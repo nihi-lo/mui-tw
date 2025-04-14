@@ -7,9 +7,9 @@ type ThemeState = {
   setTheme: (theme: Theme) => void;
 };
 
-const ThemeContext = createContext<ThemeState>({
+const ThemeStateContext = createContext<ThemeState>({
   currentTheme: "system",
   setTheme: () => null,
 });
 
-export { type Theme, type ThemeState, ThemeContext };
+export { type Theme, type ThemeState, ThemeStateContext };

@@ -1,7 +1,7 @@
 import { useColorScheme } from "@mui/material";
 import { useState } from "react";
 
-import { useTheme } from "@/components/providers/ThemeProvider";
+import { useThemeState } from "@/components/providers/ThemeProvider";
 
 type State = {
   anchorElement: HTMLElement | null;
@@ -22,7 +22,7 @@ const useModeToggle = (): {
 } => {
   const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null);
 
-  const { setTheme } = useTheme();
+  const { setTheme } = useThemeState();
   const { setMode } = useColorScheme();
 
   const openMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
