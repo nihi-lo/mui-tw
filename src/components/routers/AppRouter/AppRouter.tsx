@@ -10,15 +10,23 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<RootPage />} />
+
           <Route path=":productName">
             <Route index element={<Navigate replace to="/" />} />
+
             <Route path="manuals">
               <Route index element={<Navigate replace to="./home" />} />
-              <Route path="*" element={<ManualPageRouter />} />
+
+              <Route path="*">
+                <Route index element={<ManualPageRouter />} />
+              </Route>
             </Route>
           </Route>
         </Route>
-        <Route path="*" element={<>not found</>} />
+
+        <Route path="*">
+          <Route index element={<>not found</>} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
