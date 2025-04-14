@@ -3,7 +3,7 @@ import { RiMoonLine, RiSunLine } from "react-icons/ri";
 
 import { useModeToggle } from "./ModeToggle.hook";
 
-const ModeToggle: React.FC = () => {
+export const ModeToggle: React.FC = () => {
   const {
     state: { anchorElement, isMenuOpen },
     action: { openMenu, closeMenu, toggleLightTheme, toggleDarkTheme, toggleSystemTheme },
@@ -23,5 +23,3 @@ const ModeToggle: React.FC = () => {
     </div>
   );
 };
-
-export { ModeToggle };

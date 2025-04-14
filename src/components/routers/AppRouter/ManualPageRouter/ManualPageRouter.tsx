@@ -4,7 +4,7 @@ import { ManualCreatePage, ManualEditPage, ManualViewPage } from "@/components/p
 
 import { useManualPageRouter } from "./ManualPageRouter.hook";
 
-const ManualPageRouter: React.FC = () => {
+export const ManualPageRouter: React.FC = () => {
   const {
     state: { transitionDestination, error, isLoading },
   } = useManualPageRouter();
@@ -28,5 +28,3 @@ const ManualPageRouter: React.FC = () => {
       return <div>error</div>;
   }
 };
-
-export { ManualPageRouter };

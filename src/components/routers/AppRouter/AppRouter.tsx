@@ -4,7 +4,7 @@ import { RootLayout } from "@/components/layouts";
 import { RootPage } from "@/components/pages";
 import { ManualPageRouter } from "@/components/routers/AppRouter/ManualPageRouter";
 
-const AppRouter: React.FC = () => {
+export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter basename="manu">
       <Routes>
@@ -31,5 +31,3 @@ const AppRouter: React.FC = () => {
     </BrowserRouter>
   );
 };
-
-export { AppRouter };

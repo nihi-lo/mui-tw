@@ -18,7 +18,7 @@ type Argument = {
   storageKey?: string;
 };
 
-const useThemeProvider = ({
+export const useThemeProvider = ({
   defaultTheme = "system",
   storageKey = "theme",
 }: Argument): {
@@ -71,5 +71,3 @@ const useThemeProvider = ({
     action: undefined,
   };
 };
-
-export { useThemeProvider };

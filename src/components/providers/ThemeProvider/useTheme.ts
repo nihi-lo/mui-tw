@@ -7,8 +7,6 @@ import {
   ThemeDispatchContext,
 } from "./ThemeProvider.context";
 
-const useThemeState = (): ThemeState => useContext(ThemeStateContext);
+export const useThemeState = (): ThemeState => useContext(ThemeStateContext);
 
-const useThemeDispatch = (): ThemeDispatch => useContext(ThemeDispatchContext);
-
-export { useThemeState, useThemeDispatch };
+export const useThemeDispatch = (): ThemeDispatch => useContext(ThemeDispatchContext);

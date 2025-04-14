@@ -1,5 +1,3 @@
-const ManualCreatePage: React.FC = () => {
+export const ManualCreatePage: React.FC = () => {
   return <></>;
 };
-
-export { ManualCreatePage };

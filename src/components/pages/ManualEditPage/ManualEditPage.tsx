@@ -1,5 +1,3 @@
-const ManualEditPage: React.FC = () => {
+export const ManualEditPage: React.FC = () => {
   return <></>;
 };
-
-export { ManualEditPage };

@@ -1,4 +1,4 @@
-const RootPage: React.FC = () => {
+export const RootPage: React.FC = () => {
   return (
     <div className="bg-content1 text-foreground rounded-lg px-8 py-4 shadow-md">
       <div className="flex gap-2 pb-4">
@@ -28,5 +28,3 @@ const RootPage: React.FC = () => {
     </div>
   );
 };
-
-export { RootPage };

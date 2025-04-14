@@ -17,7 +17,7 @@ type TreeItem = {
   subItems?: TreeItem[];
 };
 
-const RootLayout: React.FC = () => {
+export const RootLayout: React.FC = () => {
   const renderItems = useMemo<TreeItem[]>(() => {
     return [
       {
@@ -84,5 +84,3 @@ const RootLayout: React.FC = () => {
     </>
   );
 };
-
-export { RootLayout };

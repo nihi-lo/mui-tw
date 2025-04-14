@@ -16,7 +16,7 @@ type Action = {
   toggleSystemTheme: () => void;
 };
 
-const useModeToggle = (): {
+export const useModeToggle = (): {
   state: State;
   action: Action;
 } => {
@@ -65,5 +65,3 @@ const useModeToggle = (): {
     },
   };
 };
-
-export { useModeToggle };

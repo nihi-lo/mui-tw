@@ -9,7 +9,7 @@ type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => {
   const {
     state: { themeState, themeDispatch, defaultTheme, storageKey, muiTheme },
   } = useThemeProvider({
@@ -33,5 +33,3 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, ...props }) => 
     </ThemeStateContext.Provider>
   );
 };
-
-export { ThemeProvider };

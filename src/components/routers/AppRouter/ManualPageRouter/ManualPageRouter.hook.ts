@@ -11,8 +11,8 @@ type State = {
 
 type Action = undefined;
 
-const useManualPageRouter = (): { state: State; action: Action } => {
-  const { productName, "*": splat } = useParams();
+export const useManualPageRouter = (): { state: State; action: Action } => {
+  const { productName } = useParams();
   const [searchParams] = useSearchParams();
 
   const transitionDestination = useMemo<TransitionDestination | undefined | null>(() => {
@@ -46,5 +46,3 @@ const useManualPageRouter = (): { state: State; action: Action } => {
     action: undefined,
   };
 };
-
-export { useManualPageRouter };
