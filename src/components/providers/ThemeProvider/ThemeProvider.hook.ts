@@ -1,8 +1,7 @@
 import { type Theme as MUITheme } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { type Theme, type ThemeState } from "@/contexts/ThemeContext";
-
+import { type Theme, type ThemeState } from "./ThemeProvider.context";
 import { muiTheme } from "./ThemeProvider.type";
 
 type State = {

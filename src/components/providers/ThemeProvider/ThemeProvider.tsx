@@ -1,7 +1,6 @@
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
 
-import { type Theme, ThemeContext } from "@/contexts/ThemeContext";
-
+import { type Theme, ThemeContext } from "./ThemeProvider.context";
 import { useThemeProvider } from "./ThemeProvider.hook";
 
 type ThemeProviderProps = {
