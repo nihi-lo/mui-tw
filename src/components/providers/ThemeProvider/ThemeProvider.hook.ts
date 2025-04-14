@@ -1,5 +1,5 @@
 import { createTheme, type Theme as MUITheme } from "@mui/material";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import { type Theme, type ThemeDispatch, type ThemeState } from "./ThemeProvider.context";
 
@@ -63,6 +63,23 @@ export const useThemeProvider = ({
     }),
     [storageKey],
   );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (currentTheme === "dark" || currentTheme === "light") {
+        return;
+      }
+
+      const root = window.document.documentElement;
+      root.classList.remove("light", "dark");
+      root.classList.add(e.matches ? "dark" : "light");
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [currentTheme]);
 
   return {
     state: {
