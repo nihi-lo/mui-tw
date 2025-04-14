@@ -1,5 +1,5 @@
 import { createTheme, type Theme as MUITheme } from "@mui/material";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useSyncExternalStore, useEffect } from "react";
 
 import { type Theme, type ThemeDispatch, type ThemeState } from "./ThemeProvider.context";
 
@@ -33,26 +33,21 @@ export const useThemeProvider = ({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   );
 
-  const themeState = useMemo<ThemeState>(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
+  const windowTheme = useSyncExternalStore(
+    (callback: () => void) => {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", callback);
+      return () => mediaQuery.removeEventListener("change", callback);
+    },
+    () => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+  );
 
-    switch (currentTheme) {
-      case "dark":
-      case "light":
-        root.classList.add(currentTheme);
-        break;
-      case "system":
-        root.classList.add(
-          window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
-        );
-        break;
-    }
-
-    return {
+  const themeState = useMemo<ThemeState>(
+    () => ({
       currentTheme,
-    };
-  }, [currentTheme]);
+    }),
+    [currentTheme],
+  );
 
   const themeDispatch = useMemo<ThemeDispatch>(
     () => ({
@@ -65,21 +60,10 @@ export const useThemeProvider = ({
   );
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (currentTheme === "dark" || currentTheme === "light") {
-        return;
-      }
-
-      const root = window.document.documentElement;
-      root.classList.remove("light", "dark");
-      root.classList.add(e.matches ? "dark" : "light");
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [currentTheme]);
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(currentTheme === "system" ? windowTheme : currentTheme);
+  }, [currentTheme, windowTheme]);
 
   return {
     state: {
