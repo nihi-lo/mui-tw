@@ -1,5 +1,5 @@
 import { createTheme, type Theme as MUITheme } from "@mui/material";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 
 import { type Theme, type ThemeDispatch, type ThemeState } from "./ThemeProvider.context";
 
@@ -33,37 +33,41 @@ export const useThemeProvider = ({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   );
 
-  const theme = useMemo<ThemeState & ThemeDispatch>(
+  const themeState = useMemo<ThemeState>(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+
+    switch (currentTheme) {
+      case "dark":
+      case "light":
+        root.classList.add(currentTheme);
+        break;
+      case "system":
+        root.classList.add(
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+        );
+        break;
+    }
+
+    return {
+      currentTheme,
+    };
+  }, [currentTheme]);
+
+  const themeDispatch = useMemo<ThemeDispatch>(
     () => ({
-      currentTheme: currentTheme,
       setTheme: (theme: Theme) => {
         localStorage.setItem(storageKey, theme);
         setCurrentTheme(theme);
       },
     }),
-    [currentTheme, storageKey],
+    [storageKey],
   );
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-
-    if (currentTheme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-      root.classList.add(systemTheme);
-
-      return;
-    }
-
-    root.classList.add(currentTheme);
-  }, [currentTheme]);
 
   return {
     state: {
-      themeState: theme,
-      themeDispatch: theme,
+      themeState,
+      themeDispatch,
       defaultTheme,
       storageKey,
       muiTheme,
