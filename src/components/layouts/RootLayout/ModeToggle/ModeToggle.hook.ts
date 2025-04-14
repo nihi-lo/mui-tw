@@ -1,7 +1,7 @@
 import { useColorScheme } from "@mui/material";
 import { useState } from "react";
 
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 type State = {
   anchorElement: HTMLElement | null;
