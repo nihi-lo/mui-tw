@@ -1,12 +1,12 @@
 export const RootPage: React.FC = () => {
   return (
-    <div className="bg-content1 text-foreground rounded-lg px-8 py-4 shadow-md">
+    <div className="bg-content1 text-foreground rounded-sm border px-8 py-4">
       <div className="flex gap-2 pb-4">
         <div className="size-6 rounded-full bg-amber-300"></div>
         最終更新日 2025/3/18 2:29
       </div>
       <div>
-        <h2 className="border-divider border-b pb-1 text-2xl font-semibold">概要</h2>
+        <h2 className="border-b pb-1 text-2xl font-semibold">概要</h2>
         <p className="my-4">
           エンジニアであれば誰もが、無料で利用できるサーバを求めていると思います。 この記事では、
           <code className="rounded-md bg-zinc-500/40 px-1.5 py-0.5">tempura create</code>
@@ -18,7 +18,7 @@ export const RootPage: React.FC = () => {
           無料で利用できるパブリッククラウドとしてAWS,
           GCPも存在しますが、どちらも無料枠は1年間限定で、期限が切れると有料プランに移行してしまいます。しかしOCIについては期限の制限なしに無料枠を提供してくれています。
         </p>
-        <h2 className="border-divider my-4 mt-16 border-b pb-1 text-2xl font-semibold">
+        <h2 className="my-4 mt-16 border-b pb-1 text-2xl font-semibold">
           ドメインモデリングの難しさ
         </h2>
         <p className="mt-4">

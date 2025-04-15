@@ -67,7 +67,7 @@ export const RootLayout: React.FC = () => {
 
   return (
     <>
-      <header className="bg-background sticky top-0 z-10 flex h-14 items-center justify-between px-4 shadow-md">
+      <header className="bg-background sticky top-0 z-10 flex h-14 items-center justify-between border-b px-4">
         <BrandLogo />
         <ModeToggle />
       </header>
@@ -75,7 +75,7 @@ export const RootLayout: React.FC = () => {
         <div className="grow">
           <Outlet />
         </div>
-        <div className="h-fit min-w-xs rounded-lg p-4 shadow-md">
+        <div className="bg-content1 h-fit min-w-xs rounded-sm border p-4">
           <SimpleTreeView slots={{ endIcon: TreeItemEndIcon }}>
             {renderTreeItems(renderItems)}
           </SimpleTreeView>
