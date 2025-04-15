@@ -1,7 +1,8 @@
 import { createTheme, type Theme as MUITheme } from "@mui/material";
-import { useState, useMemo, useSyncExternalStore, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import { type Theme, type ThemeDispatch, type ThemeState } from "./ThemeProvider.context";
+import { useSystemThemeStatus } from "./useSystemThemeStatus";
 
 type State = {
   themeState: ThemeState;
@@ -29,17 +30,10 @@ export const useThemeProvider = ({
     colorSchemes: { dark: true, light: true },
   });
 
+  const { isDarkTheme: systemIsDarkTheme } = useSystemThemeStatus();
+
   const [currentTheme, setCurrentTheme] = useState<Theme>(
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
-  );
-
-  const windowTheme = useSyncExternalStore(
-    (callback: () => void) => {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      mediaQuery.addEventListener("change", callback);
-      return () => mediaQuery.removeEventListener("change", callback);
-    },
-    () => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
   );
 
   const themeState = useMemo<ThemeState>(
@@ -62,8 +56,13 @@ export const useThemeProvider = ({
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
-    root.classList.add(currentTheme === "system" ? windowTheme : currentTheme);
-  }, [currentTheme, windowTheme]);
+
+    if (currentTheme === "system") {
+      root.classList.add(systemIsDarkTheme ? "dark" : "light");
+      return;
+    }
+    root.classList.add(currentTheme);
+  }, [currentTheme, systemIsDarkTheme]);
 
   return {
     state: {
